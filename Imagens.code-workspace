@@ -1,0 +1,14 @@
+{
+    "imagens": [
+        {
+            "titulo": "Teste Antes",
+            "descricao": "Essa é uma imagem de antes",
+            "caminho": "img\\fotos\\sofa6_antes.jpg"
+        },
+        {
+            "titulo": "Teste depois",
+            "descricao": "Essa é uma imagem de depois",
+            "caminho": "img\\fotos\\sofa6_depois.jpg"
+        }
+    ]
+}

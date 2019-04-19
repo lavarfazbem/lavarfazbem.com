@@ -1,0 +1,1 @@
+C:\Program Files (x86)\Google\Chrome\Application\chrome --args --disable-web-security --user-data-dir
