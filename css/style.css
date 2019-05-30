@@ -909,7 +909,8 @@ div.content-box.big div.content-box-info p {
 
 .service-icon, .service-box-content {
     display: table-cell;
-    vertical-align: top;
+    vertical-align: middle;
+    font-weight: 900;
 }
 
 .service-icon {

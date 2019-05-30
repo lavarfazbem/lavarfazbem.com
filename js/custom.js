@@ -1,93 +1,97 @@
 jQuery(document).ready(function () {
 
-    
-    jQuery.waitForImages.hasImgProperties = ['background','backgroundImage'];
-    jQuery('body').waitForImages(function() {
+
+    jQuery.waitForImages.hasImgProperties = ['background', 'backgroundImage'];
+    jQuery('body').waitForImages(function () {
         jQuery(".page-mask").delay(1200).fadeOut('slow');
-        jQuery('body').css('overflowY','auto');
+        jQuery('body').css('overflowY', 'auto');
     });
 
 
-/*-------------------------------------------------*/
-/* =  Animated content
-/*-------------------------------------------------*/
+    jQuery('#linkWhatsapp').on('click', () => {
+        window.open('http://api.whatsapp.com/send?phone=5531989414768', '_blank');
+    });
+
+    /*-------------------------------------------------*/
+    /* =  Animated content
+    /*-------------------------------------------------*/
 
     wow = new WOW(
         {
             animateClass: 'animated',
-            offset:       100
+            offset: 100
         }
     );
 
     wow.init();
 
-/*==========================*/
-/* Sticky Navigation
-/*==========================*/
-     
-    jQuery("#navigation").sticky({topSpacing:0});
+    /*==========================*/
+    /* Sticky Navigation
+    /*==========================*/
 
-    
-/*==========================*/
-/* Video Background Overlay
-/*==========================*/
+    jQuery("#navigation").sticky({ topSpacing: 0 });
+
+
+    /*==========================*/
+    /* Video Background Overlay
+    /*==========================*/
 
     var winheight = jQuery(window).height();
 
-    jQuery(".video-overlay").css( "height", winheight );
+    jQuery(".video-overlay").css("height", winheight);
 
 
-/* ==============================================
-Drop Down Menu Fade Effect
-=============================================== */  
+    /* ==============================================
+    Drop Down Menu Fade Effect
+    =============================================== */
 
-    $('.nav-toggle').hover(function() {
+    $('.nav-toggle').hover(function () {
         'use strict';
         $(this).find('.dropdown-menu').first().stop(true, true).slideDown(250);
-        }, function() {
+    }, function () {
         $(this).find('.dropdown-menu').first().stop(true, true).slideUp(250)
-     });
+    });
 
 
 
-/*==========================*/
-/* Navigation Scrolling
-/*==========================*/
+    /*==========================*/
+    /* Navigation Scrolling
+    /*==========================*/
     jQuery('.nav').onePageNav({
-            filter: ':not(.external)',
-            begin: function() {
+        filter: ':not(.external)',
+        begin: function () {
             console.log("Inicia a rolagem.")
-            },
-            end: function() {
+        },
+        end: function () {
             console.log("Finaliza a rolagem.")
-            }
-        });
+        }
+    });
 
 
     var navigationHeight = jQuery("#navigation").outerHeight();
 
-    jQuery('.navbar-custom .navbar-nav > li > a').click(function(){
+    jQuery('.navbar-custom .navbar-nav > li > a').click(function () {
         jQuery('html, body').animate({
-            scrollTop: jQuery( $.attr(this, 'href') ).offset().top - navigationHeight + 44
+            scrollTop: jQuery($.attr(this, 'href')).offset().top - navigationHeight + 44
         }, 800, 'easeInQuad');
-        
+
         /* Fix jumping of navigation. */
-        setTimeout(function() {
+        setTimeout(function () {
             jQuery(window).trigger('scroll');
         }, 900);
-        
+
         return false;
     });
 
 
 
-    
 
-/*==========================*/
-/* FullScreen Slider
-/*==========================*/
 
-    jQuery(function (){
+    /*==========================*/
+    /* FullScreen Slider
+    /*==========================*/
+
+    jQuery(function () {
         jQuery('#fullscreen-slider').maximage({
             cycleOptions: {
                 fx: 'fade',
@@ -96,59 +100,59 @@ Drop Down Menu Fade Effect
                 prev: '#slider_left',
                 next: '#slider_right',
                 pause: 1,
-                before: function(last,current){
-                    jQuery('.slide-content').fadeOut().animate({top:'500px'},{queue:false, easing: 'easeOutQuad', duration: 750});
-                    jQuery('.slide-content').fadeOut().animate({top:'-500px'});
+                before: function (last, current) {
+                    jQuery('.slide-content').fadeOut().animate({ top: '500px' }, { queue: false, easing: 'easeOutQuad', duration: 750 });
+                    jQuery('.slide-content').fadeOut().animate({ top: '-500px' });
                 },
-                after: function(last,current){
-                    jQuery('.slide-content').fadeIn().animate({top:'0'},{queue:false, easing: 'easeOutQuad', duration: 650});
-                }   
-                
-                
-                        
+                after: function (last, current) {
+                    jQuery('.slide-content').fadeIn().animate({ top: '0' }, { queue: false, easing: 'easeOutQuad', duration: 650 });
+                }
+
+
+
             },
-            
-            
-            
-            onFirstImageLoaded: function(){
+
+
+
+            onFirstImageLoaded: function () {
                 //jQuery('#cycle-loader').delay(1000).hide();
                 jQuery('#fullscreen-slider').delay(1000).fadeIn('slow');
-                jQuery('.slide-content').fadeIn().animate({top:'0'});
-                jQuery('.slide-content a').bind('click',function(event){
-                    var $anchor = jQuery(this);              
+                jQuery('.slide-content').fadeIn().animate({ top: '0' });
+                jQuery('.slide-content a').bind('click', function (event) {
+                    var $anchor = jQuery(this);
                     jQuery('html, body').stop().animate({
-                    scrollTop: jQuery($anchor.attr('href')).offset().top -44
-                    }, 1500,'easeInOutExpo');               
+                        scrollTop: jQuery($anchor.attr('href')).offset().top - 44
+                    }, 1500, 'easeInOutExpo');
                     event.preventDefault();
-                    });         
+                });
             }
         });
 
         // Helper function to Fill and Center the HTML5 Video
         jQuery('video,object').maximage('maxcover');
-        
-        
-        
-        
+
+
+
+
 
         // To show it is dynamic html text
-        
+
     });
 
 
-    
 
-/*----------------------------------------------------*/
-/*  Parallax section
-/*----------------------------------------------------*/
+
+    /*----------------------------------------------------*/
+    /*  Parallax section
+    /*----------------------------------------------------*/
     //Calculating page width
     pageWidth = jQuery(window).width();
 
     //Parallax  
     jQuery(window).bind('load', function () {
-        if(pageWidth > 980) {
+        if (pageWidth > 980) {
             parallaxInit();
-        }                       
+        }
     });
 
     function parallaxInit() {
@@ -157,49 +161,49 @@ Drop Down Menu Fade Effect
         jQuery('.quote-wrap').parallax("30%", 0.1);
         jQuery('.subscription-wrap').parallax("30%", 0.1);
         jQuery('.image-parallax').parallax("50%", 0.1);
-        
+
     }
 
 
     //Horizontal parallax
     jQuery('.about-wrap .parallax-layer')
         .hparallax({
-          mouseport: jQuery('.about-wrap')
-    }); 
+            mouseport: jQuery('.about-wrap')
+        });
 
 
-/*----------------------------------------------------*/
-/*  Animated Progress Bars
-/*----------------------------------------------------*/
+    /*----------------------------------------------------*/
+    /*  Animated Progress Bars
+    /*----------------------------------------------------*/
 
     jQuery('.skills li').each(function () {
-        jQuery(this).fappear(function() {
-          jQuery(this).animate({opacity:1,left:"0px"},800);
-          var b = jQuery(this).find(".progress-bar").attr("data-width");
-          jQuery(this).find(".progress-bar").animate({
-            width: b + "%"
-          }, 1300, "easeOutCirc");
-        }); 
-    });   
-
-
-/*----------------------------------------------------*/
-/*  Animated Count To
-/*----------------------------------------------------*/
-
-    jQuery('.fun-wrap .fun-box').each(function () {
-        jQuery(this).fappear(function() {
-            jQuery('.fun').countTo();
-        }); 
+        jQuery(this).fappear(function () {
+            jQuery(this).animate({ opacity: 1, left: "0px" }, 800);
+            var b = jQuery(this).find(".progress-bar").attr("data-width");
+            jQuery(this).find(".progress-bar").animate({
+                width: b + "%"
+            }, 1300, "easeOutCirc");
+        });
     });
 
 
- 
-/*----------------------------------------------------*/
-/*  Scroll To Top Section
-/*----------------------------------------------------*/
+    /*----------------------------------------------------*/
+    /*  Animated Count To
+    /*----------------------------------------------------*/
+
+    jQuery('.fun-wrap .fun-box').each(function () {
+        jQuery(this).fappear(function () {
+            jQuery('.fun').countTo();
+        });
+    });
+
+
+
+    /*----------------------------------------------------*/
+    /*  Scroll To Top Section
+    /*----------------------------------------------------*/
     jQuery(document).ready(function () {
-    
+
         jQuery(window).scroll(function () {
             if (jQuery(this).scrollTop() > 100) {
                 jQuery('.scrollup').fadeIn();
@@ -207,23 +211,23 @@ Drop Down Menu Fade Effect
                 jQuery('.scrollup').fadeOut();
             }
         });
-    
+
         jQuery('.scrollup').click(function () {
             jQuery("html, body").animate({
                 scrollTop: 0
             }, 600);
             return false;
         });
-    
+
     });
 
 
 
 
 
-/*----------------------------------------------------*/
-/*  Accordion Section
-/*----------------------------------------------------*/
+    /*----------------------------------------------------*/
+    /*  Accordion Section
+    /*----------------------------------------------------*/
 
     jQuery('.accordionMod').each(function (index) {
         var thisBox = jQuery(this).children(),
@@ -258,19 +262,19 @@ Drop Down Menu Fade Effect
     });
 
 
-/*----------------------------------------------------*/
-/*  PrettyPhoto
-/*----------------------------------------------------*/
+    /*----------------------------------------------------*/
+    /*  PrettyPhoto
+    /*----------------------------------------------------*/
 
-    jQuery(function(){
+    jQuery(function () {
         jQuery("a[data-gal^='prettyPhoto']").prettyPhoto({
-              opacity: 0.5,
-              social_tools: "",
-              deeplinking: false
+            opacity: 0.5,
+            social_tools: "",
+            deeplinking: false
         });
 
         jQuery('a[data-rel^="prettyPhoto"]').prettyPhoto();
-    });     
+    });
 
 
 
@@ -280,22 +284,22 @@ Drop Down Menu Fade Effect
     });
 
 
-/*----------------------------------------------------*/
-/*  Jquery Google map Section
-/*----------------------------------------------------*/
-        
+    /*----------------------------------------------------*/
+    /*  Jquery Google map Section
+    /*----------------------------------------------------*/
+
     //Google map
     jQuery('#maps').gMap({
         address: "House: 325, Road: 2, Mirpur DOHS, Dhaka, Bangladesh",
         zoom: 16,
         controls: {
-         panControl: true,
-         zoomControl: true,
-         mapTypeControl: true,
-         scaleControl: true,
-         streetViewControl: true,
-         overviewMapControl: true
-     },
+            panControl: true,
+            zoomControl: true,
+            mapTypeControl: true,
+            scaleControl: true,
+            streetViewControl: true,
+            overviewMapControl: true
+        },
         markers: [{
             latitude: 23.835369,
             longitude: 90.367172,
@@ -307,23 +311,23 @@ Drop Down Menu Fade Effect
 
 
 
-/*===============================================*/
-/*  Video Script
-/*===============================================*/
+    /*===============================================*/
+    /*  Video Script
+    /*===============================================*/
 
-    jQuery(function(){
+    jQuery(function () {
         jQuery(".player").mb_YTPlayer();
-    }); 
+    });
 
 
-/*----------------------------------------------------*/
-/*  Carousel Section
-/*----------------------------------------------------*/
+    /*----------------------------------------------------*/
+    /*  Carousel Section
+    /*----------------------------------------------------*/
 
-    
-    jQuery('.testimonials-carousel').carousel({interval: false, wrap: false});   
-    
-    jQuery('.testimonials-carousel-widget').carousel({interval: 5000, pause: "hover"});
+
+    jQuery('.testimonials-carousel').carousel({ interval: false, wrap: false });
+
+    jQuery('.testimonials-carousel-widget').carousel({ interval: 5000, pause: "hover" });
 
 });
 
@@ -337,93 +341,93 @@ Drop Down Menu Fade Effect
 
 
 
-    jQuery(document).ready(function(){ 
+jQuery(document).ready(function () {
 
-        // Portfolio
-        (function($) {
-            "use strict";
-            var $container = $('#portfolio-wrap'),
-                $items = $container.find('.portfolio-item'),
-                portfolioLayout = 'fitRows';
-                
-                if( $container.hasClass('portfolio-centered') ) {
-                    portfolioLayout = 'masonry';
-                }
-                        
-                $container.isotope({
-                    filter: '*',
-                    animationEngine: 'best-available',
-                    layoutMode: portfolioLayout,
-                    animationOptions: {
-                    duration: 750,
-                    easing: 'linear',
-                    queue: false
-                },
-                masonry: {
-                }
-                }, refreshWaypoints());
-                
-                function refreshWaypoints() {
-                    setTimeout(function() {
-                    }, 1000);   
-                }
-                        
-                $('#filters a').on('click', function() {
-                        var selector = $(this).attr('data-filter');
-                        $container.isotope({ filter: selector }, refreshWaypoints());
-                        $('#filters a').removeClass('active');
-                        $(this).addClass('active');
-                        return false;
+    // Portfolio
+    (function ($) {
+        "use strict";
+        var $container = $('#portfolio-wrap'),
+            $items = $container.find('.portfolio-item'),
+            portfolioLayout = 'fitRows';
+
+        if ($container.hasClass('portfolio-centered')) {
+            portfolioLayout = 'masonry';
+        }
+
+        $container.isotope({
+            filter: '*',
+            animationEngine: 'best-available',
+            layoutMode: portfolioLayout,
+            animationOptions: {
+                duration: 750,
+                easing: 'linear',
+                queue: false
+            },
+            masonry: {
+            }
+        }, refreshWaypoints());
+
+        function refreshWaypoints() {
+            setTimeout(function () {
+            }, 1000);
+        }
+
+        $('#filters a').on('click', function () {
+            var selector = $(this).attr('data-filter');
+            $container.isotope({ filter: selector }, refreshWaypoints());
+            $('#filters a').removeClass('active');
+            $(this).addClass('active');
+            return false;
+        });
+
+        function getColumnNumber() {
+            var winWidth = $(window).width(),
+                columnNumber = 1;
+
+            if (winWidth > 1200) {
+                columnNumber = 4;
+            } else if (winWidth > 950) {
+                columnNumber = 4;
+            } else if (winWidth > 600) {
+                columnNumber = 3;
+            } else if (winWidth > 400) {
+                columnNumber = 2;
+            } else if (winWidth > 250) {
+                columnNumber = 1;
+            }
+            return columnNumber;
+        }
+
+        function setColumns() {
+            var winWidth = $(window).width(),
+                columnNumber = getColumnNumber(),
+                itemWidth = Math.floor(winWidth / columnNumber);
+
+            $container.find('.portfolio-item').each(function () {
+                $(this).css({
+                    width: itemWidth + 'px'
                 });
-                
-                function getColumnNumber() { 
-                    var winWidth = $(window).width(), 
-                    columnNumber = 1;
-                
-                    if (winWidth > 1200) {
-                        columnNumber = 4;
-                    } else if (winWidth > 950) {
-                        columnNumber = 4;
-                    } else if (winWidth > 600) {
-                        columnNumber = 3;
-                    } else if (winWidth > 400) {
-                        columnNumber = 2;
-                    } else if (winWidth > 250) {
-                        columnNumber = 1;
-                    }
-                        return columnNumber;
-                    }       
-                    
-                    function setColumns() {
-                        var winWidth = $(window).width(), 
-                        columnNumber = getColumnNumber(), 
-                        itemWidth = Math.floor(winWidth / columnNumber);
-                        
-                        $container.find('.portfolio-item').each(function() { 
-                            $(this).css( { 
-                            width : itemWidth + 'px' 
-                        });
-                    });
-                }
-                
-                function setPortfolio() { 
-                    setColumns();
-                    $container.isotope('reLayout');
-                }
-                    
-                $container.imagesLoaded(function () { 
-                    setPortfolio();
-                });
-                
-                $(window).on('resize', function () { 
-                setPortfolio();          
             });
-        })(jQuery);
-    
+        }
 
-    
+        function setPortfolio() {
+            setColumns();
+            $container.isotope('reLayout');
+        }
 
-    });
+        $container.imagesLoaded(function () {
+            setPortfolio();
+        });
+
+        $(window).on('resize', function () {
+            setPortfolio();
+        });
+    })(jQuery);
+
+
+
+
+});
 
 
 
@@ -432,98 +436,98 @@ Drop Down Menu Fade Effect
 /*----------------------------------------------------*/
 
 
-jQuery(document).ready(function(){
-    
+jQuery(document).ready(function () {
+
     var onMobile = false;
-    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) { onMobile = true; }
-    
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) { onMobile = true; }
+
     jQuery('.fullwidth-slider').bxSlider({
         mode: "fade",
         speed: 1000,
         pager: false,
         nextText: '<i class="fa fa-angle-right"></i>',
-        prevText: '<i class="fa fa-angle-left"></i>', 
-        
-        onSlideBefore: function($slideElement) {
-            ($slideElement).find('.slide-caption').fadeOut().animate({top:'100px'},{queue:false, easing: 'easeOutQuad', duration: 550});
-            ($slideElement).find('.slide-caption').hide().animate({top:'-100px'});
+        prevText: '<i class="fa fa-angle-left"></i>',
+
+        onSlideBefore: function ($slideElement) {
+            ($slideElement).find('.slide-caption').fadeOut().animate({ top: '100px' }, { queue: false, easing: 'easeOutQuad', duration: 550 });
+            ($slideElement).find('.slide-caption').hide().animate({ top: '-100px' });
         },
-        onSlideAfter: function($slideElement) {
-            ($slideElement).find('.slide-caption').fadeIn().animate({top:'0'},{queue:false, easing: 'easeOutQuad', duration: 450});
+        onSlideAfter: function ($slideElement) {
+            ($slideElement).find('.slide-caption').fadeIn().animate({ top: '0' }, { queue: false, easing: 'easeOutQuad', duration: 450 });
         },
-        
+
     });
-    
-    jQuery('.bx-wrapper .bx-controls-direction a').attr('data-500','top:83%; opacity: 0;').attr('data-start','top:50%; opacity: 1;');
-    
-    
-    if( ( onMobile === false ) && ( jQuery('.parallax-slider').length ) ) {
-    
+
+    jQuery('.bx-wrapper .bx-controls-direction a').attr('data-500', 'top:83%; opacity: 0;').attr('data-start', 'top:50%; opacity: 1;');
+
+
+    if ((onMobile === false) && (jQuery('.parallax-slider').length)) {
+
         skrollr.init({
             edgeStrategy: 'set',
             smoothScrolling: false,
             forceHeight: false
         });
-        
+
     }
 
 
     jQuery('.text-slide').bxSlider({
         controls: false,
-        adaptiveHeight: true, 
-        pager: false,       
-        auto:true,
-        mode:'fade',
+        adaptiveHeight: true,
+        pager: false,
+        auto: true,
+        mode: 'fade',
         pause: 3000,
-    });   
+    });
 
-    
-});  
+
+});
 
 /*----------------------------------------------------*/
 /*  Contact Form Section
 /*----------------------------------------------------*/
-    $("#contact").submit(function (e) {
-        e.preventDefault();
-        var nome = $("#nome").val();
-        var telefone = $("#telefone").val();
-        var endereco = $("#endereco").val();
-        var mensagem = $("#mensagem").val();
-        var dataString = 'nome=' + nome + '&telefone=' + telefone + '&endereco=' + endereco + '&mensagem=' + mensagem;
+$("#contact").submit(function (e) {
+    e.preventDefault();
+    var nome = $("#nome").val();
+    var telefone = $("#telefone").val();
+    var endereco = $("#endereco").val();
+    var mensagem = $("#mensagem").val();
+    var dataString = 'nome=' + nome + '&telefone=' + telefone + '&endereco=' + endereco + '&mensagem=' + mensagem;
 
-        if ((mensagem.length > 0) && (nome.length > 1)) {
-            $.ajax({
-                type: "POST",
-                url: "https://formsquash.io/f/kZsPUsrjajDiZqbVamAM",
-                data: dataString,
-                success: function () {
-                    $('.success').fadeIn(1000).delay(60000).fadeOut(1000);
-                    $('#contact')[0].reset();
-                }
-            });
-        } else {
-            $('.error').fadeIn(1000).delay(60000).fadeOut(1000);
-        }
+    if ((mensagem.length > 0) && (nome.length > 1)) {
+        $.ajax({
+            type: "POST",
+            url: "https://formsquash.io/f/kZsPUsrjajDiZqbVamAM",
+            data: dataString,
+            success: function () {
+                $('.success').fadeIn(1000).delay(60000).fadeOut(1000);
+                $('#contact')[0].reset();
+            }
+        });
+    } else {
+        $('.error').fadeIn(1000).delay(60000).fadeOut(1000);
+    }
 
-        return false;
-    });
+    return false;
+});
 
 
 
- /* ==============================================
+/* ==============================================
 Firefox anchor fix
 =============================================== */
-    $(document).ready(function(){
-        if ( $.browser.mozilla ) {
+$(document).ready(function () {
+    if ($.browser.mozilla) {
         var h = window.location.hash;
         if (h) {
             var headerH = $('#navigation').outerHeight();
             $('html, body').stop().animate({
-                scrollTop : $(h).offset().top - headerH + "px"
+                scrollTop: $(h).offset().top - headerH + "px"
             }, 1200, 'easeInOutExpo');
 
-                event.preventDefault();
+            event.preventDefault();
         }
 
     }
-    });
+});
